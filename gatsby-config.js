@@ -1,7 +1,7 @@
 module.exports = {
 
   siteMetadata: {
-    title: `Kobyo.md`,
+    title: `devlog`,
     description: `A simple Gatsby starter leveraging react-bootstrap and little else.`,
     author: `@mik3y`,
   },
@@ -33,7 +33,16 @@ module.exports = {
             options: {
               maxWidth: 480,
             },
-          }
+          },
+          {
+            resolve: `gatsby-remark-autolink-headers`,
+            options: {
+              offsetY: `30`,
+              icon: false,
+              className: `custom-class`,
+              maintainCase: false,
+            },
+          },
         ]
       }
     },

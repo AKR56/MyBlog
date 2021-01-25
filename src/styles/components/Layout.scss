@@ -42,6 +42,15 @@ html {
 
 .tags {
   grid-area: side-l;
+
+  &_list {
+    display: flex;
+    flex-wrap: wrap;
+
+    li {
+      list-style: none;
+    }
+  }
 }
 
 .profile {
