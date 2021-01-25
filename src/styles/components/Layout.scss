@@ -1,0 +1,58 @@
+@import "../variables.scss";
+@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap');
+
+html {
+  font-family: 'Kosugi Maru', sans-serif;
+}
+
+.layout {
+  min-height: 100vh;
+  background-color: $bgcolor;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template: 1fr / 200px 1fr 200px;
+  grid-template-areas: "side-l main side-r";
+}
+
+@media screen and (max-width: 767px) {
+  .container {
+    grid-template: 1fr / 1fr;
+    grid-template-areas:
+    "main"
+    "side-l"
+    "side-r";
+  }
+}
+
+.articles {
+  grid-area: main;
+  background-color: $bgcolor;
+}
+
+.location {
+  display: block;
+  height: 50px;
+  width: 100%;
+}
+
+.tags {
+  grid-area: side-l;
+}
+
+.profile {
+  grid-area: side-r;
+  text-align: right;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 64px;
+  background-color: $bgcolor;
+}
