@@ -3,18 +3,26 @@ import {graphql} from "gatsby";
 
 import Layout from "../components/Layout";
 import PostCard from "../components/PostCard";
+import Tags from "../components/Tags";
+import Seo from "../components/SEO";
 
 const TagTemplate = ({pageContext, data}) => {
 
   const { tag } = pageContext;
-  const location = `tag: ${tag}`;
+  const location = tag;
 
   return (
     <>
-      <Layout location={location}>
+      <Layout>
+      <Seo
+        title={`Tag : ${tag}`}
+      />
+        <Tags select={location}/>
+        <ul className="posts">
         {data.allMarkdownRemark.edges.map( ({node}) => (
           <PostCard key={node.fields.slug} data={node} />
-        ))}
+          ))}
+        </ul>
       </Layout>
     </>
   )
@@ -39,11 +47,9 @@ export const pageQuery = graphql`
             update(formatString: "YYYY-MM-DD")
             title
             tags
-            thumbnail {
+            hero {
               childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
+                gatsbyImageData(width: 400)
               }
             }
           }

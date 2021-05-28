@@ -1,67 +1,48 @@
-@import "../variables.scss";
-@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap');
-
-html {
-  font-family: 'Kosugi Maru', sans-serif;
-}
-
-.layout {
-  min-height: 100vh;
-  background-color: $bgcolor;
-}
-
-.container {
-  max-width: 960px;
+.inner {
+  padding: 0 12px;
   margin: 0 auto;
-
-  display: grid;
-  grid-template: 1fr / 200px 1fr 200px;
-  grid-template-areas: "side-l main side-r";
-}
-
-@media screen and (max-width: 767px) {
-  .container {
-    grid-template: 1fr / 1fr;
-    grid-template-areas:
-    "main"
-    "side-l"
-    "side-r";
-  }
+  max-width: 720px;
 }
 
 .articles {
-  grid-area: main;
-  background-color: $bgcolor;
+  display: flex;
+  flex-direction: column;
+  min-height: 60vh;
 }
 
-.location {
-  display: block;
-  height: 50px;
+.posts {
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-.tags {
-  grid-area: side-l;
+.wrapper {
+  animation: fadeIn 0.5s ease 0s 1 normal;
+  -webkit-animation: fadeIn 0.5s ease 0s 1 normal;
 
-  &_list {
-    display: flex;
-    flex-wrap: wrap;
+  @keyframes fadeIn {
+    0% { opacity: 0 }
+    100% { opacity: 1 }
+  }
 
-    li {
-      list-style: none;
-    }
+  @-webkit-keyframes fadeIn {
+    0% { opacity: 0 }
+    100% { opacity: 1 }
   }
 }
 
-.profile {
-  grid-area: side-r;
-  text-align: right;
-}
-
 .footer {
+  height: 120px;
+  font-size: 1.4rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 64px;
-  background-color: $bgcolor;
+
+  &_txt {
+    padding: 1rem 2rem;
+    border-radius: 24px;
+    box-shadow: 1px 1px 2px #b8cad8, -1px -1px 2px #f8ffff;
+  }
 }

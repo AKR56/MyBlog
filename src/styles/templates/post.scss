@@ -1,170 +1,183 @@
-.post {
-  background-color: #ffffff;
-  padding: 14px;
-  line-height: 1.5;
+@import "../variables";
 
-/* Sakura.css v1.3.0
- * ================
- * Minimal css theme.
- * Project: https://github.com/oxalorg/sakura/
-*/
-
-
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1.2;
-  margin-top: 1em;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  -ms-word-break: break-all;
-  word-break: break-word;
-  -ms-hyphens: auto;
-  -moz-hyphens: auto;
-  -webkit-hyphens: auto;
-  hyphens: auto; }
-
-h1 {
-  font-size: 2em; }
-
-h2 {
-  font-size: 1.2em; }
-
-h3 {
-  font-size: 1.75em; }
-
-h4 {
-  font-size: 1.5em; }
-
-h5 {
-  font-size: 1.25em; }
-
-h6 {
-  font-size: 1em; }
-
-p {
-  font-size: 14px;
-  margin-top: 0px;
+@mixin block {
+  background: #fff;
+  padding: 8px;
+  margin: 4px 0;
+  border-radius: 8px;
 }
 
-small, sub, sup {
-  font-size: 75%; }
+.post {
 
-hr {
-  border-color: #2c8898; }
+  &_meta {
+    margin: 0 auto 16px;
+  }
 
-a {
-  text-decoration: none;
-  color: #2c8898; }
-  a:hover {
-    color: #982c61;
-    border-bottom: 2px solid #4a4a4a; }
+  &_title {
+    color: $head-line-color;
+    font-size: 2rem;
+    padding-bottom: 1rem;
+    margin-bottom: 8px;
+    border-bottom: 1px solid darken($base-color, 10);
+  }
 
-ul {
-  padding-left: 1.4em;
-  margin-top: 0px;
-  margin-bottom: 2.5rem; }
+  &_tags {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 8px;
 
-li {
-  margin-bottom: 0.4em; }
+    li {
+      color: darken(#26a6ed, 10);
+      margin-right: 16px;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 
-blockquote {
-  margin-left: 0px;
-  margin-right: 0px;
-  padding-left: 1em;
-  padding-top: 0.8em;
-  padding-bottom: 0.8em;
-  padding-right: 0.8em;
-  border-left: 5px solid #2c8898;
-  margin-bottom: 2.5rem;
-  background-color: #f1f1f1; }
+  &_time {
+    margin-right: 16px;
+    font-size: 1.2rem;
+  }
 
-blockquote p {
-  margin-bottom: 0; }
+  &_hero {
+    border-radius: 8px;
+    margin-bottom: 24px;
+  }
 
-img {
-  height: auto;
-  max-width: 100%;
-  margin-top: 0px;
-  margin-bottom: 2.5rem; }
+  &_index {
+    @include block();
 
-/* Pre and Code */
-pre {
-  background-color: #f1f1f1;
+    &_text {
+      font-weight: bold;
+    }
+
+    &_list ul {
+      li {
+        position: relative;
+        
+        a {
+          display: block;
+
+          width: 100%;
+          height: 100%;
+          padding: 3px 14px;
+          margin: 3px 0;
+          border-radius: 3px;
+
+          transition: background-color .2s;
+
+          &:hover {
+            background-color: $accent-color;
+            cursor: pointer;
+          }
+        }
+
+        &::before {
+          content: "";
+          display: block;
+          position: absolute;
+          left: 0px;
+          top: 6px;
+
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background: $accent-color;
+        }
+      }
+    }
+  }
+
+  &_body {
+    @include block();
+
+    h1, h2, h3, h4, h5,h6 {
+      color: $head-line-color;
+      border-left: 6px solid darken($base-color, 10%);
+      padding: 6px;
+      margin-bottom: 0.8rem;
+      
+      &:not(:first-child) {
+        margin-top: 2rem;
+      }
+    }
+
+    hr {
+      margin: 2rem 0;
+    }
+
+    a {
+      text-decoration: underline;
+    }
+
+    li {
+      list-style: disc inside;
+      &::marker {
+        color: $base-color;
+        margin: 0 0.5em;
+      }
+    }
+
+    blockquote {
+      padding: 8px 8px;
+      background: #eee;
+
+      position: relative;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 8px;
+        height: 5px;
+        border-left: 3px solid #AAA;
+        border-right: 3px solid #AAA;
+      }
+    }
+
+    img {
+      margin: 12px;
+      border: 6px solid $base-color;
+    }
+
+  }
+}
+
+.gatsby-highlight {
+  font-size: 1.4rem;
+
+  &-code-line {
+    background-color: #444;
+    display: block;
+    margin-right: -1em;
+    margin-left: -16px;
+    padding-right: 1em;
+    padding-left: 10px;
+    border-left: 6px solid #9f9;
+  }
+}
+
+.gatsby-code-title {
   display: block;
-  padding: 1em;
-  overflow-x: auto;
-  margin-top: 0px;
-  margin-bottom: 2.5rem; }
-
-code {
-  font-size: 0.9em;
-  padding: 0 0.5em;
-  background-color: #f1f1f1;
-  white-space: pre-wrap; }
-
-pre > code {
-  padding: 0;
-  background-color: transparent;
-  white-space: pre; }
-
-/* Tables */
-table {
-  text-align: justify;
+  position: relative;
+  background: #272822;
   width: 100%;
-  border-collapse: collapse; }
+  top: 10px;
+  border-top-left-radius: 0.3em;
+  border-top-right-radius: 0.3em;
+  font-size: 1.2rem;
+}
 
-td, th {
-  padding: 0.5em;
-  border-bottom: 1px solid #f1f1f1; }
-
-/* Buttons, forms and input */
-input, textarea {
-  border: 1px solid #4a4a4a; }
-  input:focus, textarea:focus {
-    border: 1px solid #2c8898; }
-
-textarea {
-  width: 100%; }
-
-.button, button, input[type="submit"], input[type="reset"], input[type="button"] {
-  display: inline-block;
-  padding: 5px 10px;
-  text-align: center;
-  text-decoration: none;
-  white-space: nowrap;
-  background-color: #2c8898;
-  color: #f9f9f9;
-  border-radius: 1px;
-  border: 1px solid #2c8898;
-  cursor: pointer;
-  box-sizing: border-box; }
-  .button[disabled], button[disabled], input[type="submit"][disabled], input[type="reset"][disabled], input[type="button"][disabled] {
-    cursor: default;
-    opacity: .5; }
-  .button:focus:enabled, .button:hover:enabled, button:focus:enabled, button:hover:enabled, input[type="submit"]:focus:enabled, input[type="submit"]:hover:enabled, input[type="reset"]:focus:enabled, input[type="reset"]:hover:enabled, input[type="button"]:focus:enabled, input[type="button"]:hover:enabled {
-    background-color: #982c61;
-    border-color: #982c61;
-    color: #f9f9f9;
-    outline: 0; }
-
-textarea, select, input[type] {
-  color: #4a4a4a;
-  padding: 6px 10px;
-  /* The 6px vertically centers text on FF, ignored by Webkit */
-  margin-bottom: 10px;
-  background-color: #f1f1f1;
-  border: 1px solid #f1f1f1;
-  border-radius: 4px;
-  box-shadow: none;
-  box-sizing: border-box; }
-  textarea:focus, select:focus, input[type]:focus {
-    border: 1px solid #2c8898;
-    outline: 0; }
-
-input[type="checkbox"]:focus {
-  outline: 1px dotted #2c8898; }
-
-label, legend, fieldset {
-  display: block;
-  margin-bottom: .5rem;
-  font-weight: 600; }
+.gatsby-code-title span {
+  display: inline;
+  position: relative;
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  color: #eee;
+  background: #777;
+  border-top-left-radius: 0.3em;
+  border-bottom-right-radius: 0.3em;
+  padding: 3px;
+  top: 1px;
 }

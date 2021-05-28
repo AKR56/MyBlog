@@ -1,31 +1,61 @@
+// Plugins
 import React from "react";
-import Link from "./Link";
-import Img from "gatsby-image";
+import { Link } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
 
+// Styles
 import "../styles/components/PostCard.scss";
 
-import Tag from "./Tag";
+// FontAwesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faEdit } from '@fortawesome/free-regular-svg-icons';
+import { faHistory } from '@fortawesome/free-solid-svg-icons';
 
 const PostCard = ({data}) => {
   return (
-    <div className="card">
-      <Link to={data.fields.slug}>
-        <Img className="card_thumbnail" fluid={data.frontmatter.thumbnail.childImageSharp.fluid} />
+        <li className="card wrapper">
 
-        <div className="card_meta">
-          <time className="card_time">{data.frontmatter.date}</time>
-          { data.frontmatter.update ? <time className="card_time card_time-updata">更新:{data.frontmatter.update}</time> : false }
+          <Link to={data.fields.slug}>
+            <GatsbyImage className="card_hero" image={data.frontmatter.hero.childImageSharp.gatsbyImageData} />
+          </Link>
 
-          <h2 className="card_title">{data.frontmatter.title}</h2>
+          <div className="card_meta">
 
-          <ul className="card_tags">
-            {data.frontmatter.tags.map(tag => (
-              <Tag key={tag} data={tag} />
-            ))}
-          </ul>
-        </div>
-      </Link>
-    </div>
+            <ul className="card_tags">
+              {data.frontmatter.tags.map(tag => (
+                <li>
+                  <Link to={`/tag/${tag}`}>
+                    #{tag}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <Link to={data.fields.slug}>
+              <h2 className="card_title">
+                {data.frontmatter.title}
+              </h2>
+            </Link>
+
+            <p className="card_description">
+              {data.frontmatter.description}
+            </p>
+
+            <time className="card_time">
+              <FontAwesomeIcon icon={faEdit}/>
+              {data.frontmatter.date}
+            </time>
+
+            {data.frontmatter.update ?
+              <time className="card_time card_time-updata">
+                <FontAwesomeIcon icon={faHistory}/>
+                {data.frontmatter.update}
+              </time>
+              : false
+            }
+
+          </div>
+      </li>
   )
 };
 

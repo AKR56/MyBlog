@@ -1,58 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useStaticQuery, graphql } from "gatsby";
 
 import Header from "./Header";
-import Tag from "./Tag";
+import Profile from "./Profile";
 
 import "../styles/components/Layout.scss";
 
-const Layout = ({ children, location }) => {
-
-  const data = useStaticQuery(graphql`
-    query {
-      allMarkdownRemark {
-        group(field: frontmatter___tags) {
-          tag: fieldValue
-          totalCount
-        }
-      }
-    }
-  `)
-
-  console.log(data)
+const Layout = ({ children }) => {
 
   return (
     <div className="layout">
       <Header/>
-        <div className="container">
 
-          <main className="articles">
-          <nav className="location">
-            {location}
-          </nav>
-            {children}　
-          </main>
+      <div className="inner">
+        <main className="articles">
+          {children}　
+        </main>
+      </div>
 
-          <nav className="tags">
-            <ul className="tags_list">
-              {data.allMarkdownRemark.group.map(tag => (
-                <Tag key={tag.tag} data={tag.tag} />
-              ))}
-            </ul>
-          </nav>
-
-          <div className="profile">
-            profile
-          </div>
-
-        </div>
+      <Profile/>
 
       <footer className="footer">
-        <div>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
+        <div className="footer_txt">
+          &copy; 
+          {new Date().getFullYear()}
+          <a href="https://twitter.com/AKR56_" target="_blank" rel="noreferrer"> AKR</a>,
+          Built with
+          <a href="https://www.gatsbyjs.org"> Gatsby</a>
         </div>
       </footer>
     </div>
@@ -64,4 +38,3 @@ Layout.propTypes = {
 };
 
 export default Layout;
-

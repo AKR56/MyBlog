@@ -1,16 +1,18 @@
 module.exports = {
 
   siteMetadata: {
-    title: `devlog`,
-    description: `A simple Gatsby starter leveraging react-bootstrap and little else.`,
-    author: `@mik3y`,
+    title: `CodeBeach`,
+    description: `AKRの技術ブログ。主にフロントエンドについての学習記録です。`,
+    author: `AKR`,
   },
 
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    `gatsby-plugin-transition-link`,
+    `gatsby-plugin-sass`,
+    `gatsby-plugin-image`,
+    // `gatsby-plugin-sitemap`,
 
     {
       resolve: `gatsby-source-filesystem`,
@@ -27,13 +29,18 @@ module.exports = {
         footnotes: true,
         pedantic: true,
         gfm: true,
+
         plugins: [
+          `gatsby-remark-prismjs-title`,
+          `gatsby-remark-prismjs`,
+
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 480,
-            },
+              maxWidth: 720,
+            }
           },
+
           {
             resolve: `gatsby-remark-autolink-headers`,
             options: {
@@ -41,30 +48,19 @@ module.exports = {
               icon: false,
               className: `custom-class`,
               maintainCase: false,
-            },
+            }
           },
+
+          {
+            resolve: `gatsby-remark-external-links`,
+            options: {
+              target: `_blank`,
+              rel: `noopener noreferrer`,
+            },
+          }
         ]
       }
     },
 
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `gatsby-starter-basic-bootstrap`,
-        short_name: `starter`,
-        start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
-      },
-    },
-
-    {
-      resolve: `gatsby-plugin-sass`,
-      options: {
-        includePaths: [require("path").resolve(__dirname, "node_modules")],
-      },
-    },
   ],
 };

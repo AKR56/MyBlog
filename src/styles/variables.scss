@@ -1,6 +1,18 @@
 $shadow: 1px 3px 6px rgba($color: #000, $alpha: 0.6);
 
-$bgcolor: #2A393E;
-$cardcolor: #F5F1F2;
-$tagcolor: #59B893;
+$bgcolor: #d8eefe;
+$fontcolor: #5f6c7b;
+$cardcolor: #C8C8A9;
+$tagcolor: red;
 $btncolor: $bgcolor;
+
+$base-color: #D7EDFE;
+$accent-color: #FCE0E5;
+
+$head-line-color: #0d5d96;
+
+$paragraph-color-body: #000;
+$paragraph-color-focus: #5F718A;
+$paragraph-color: lighten($paragraph-color-focus, 10);
+
+$bg-liner :linear-gradient(150deg, lighten(#3da9fc, 33) 0%, lighten(#3da9fc, 33) 40%, lighten(#ef4565, 33) 100%);

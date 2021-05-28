@@ -1,0 +1,28 @@
+@import "reset";
+@import "variables";
+
+// font
+@import url('https://fonts.googleapis.com/css2?family=Kosugi&display=swap');
+
+html {
+  font-family: "Kosugi", sans-serif;
+
+  font-size: 62.5%; /* root 10px */
+
+  color: $paragraph-color;
+  background: linear-gradient(150deg, $accent-color 0%, $base-color 10%, $base-color 50%,$accent-color 100%);
+  ;
+}
+
+h1 {
+  font-size: 1.8rem;
+}
+
+h2, h3, h4, h5, h6 {
+  font-size: 1.6rem;
+}
+
+p, nav, li, nav {
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+}

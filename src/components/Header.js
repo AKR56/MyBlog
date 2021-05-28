@@ -1,8 +1,7 @@
 import React from "react";
-import { useStaticQuery, graphql } from "gatsby";
+import { useStaticQuery, graphql, Link } from "gatsby";
 
-import Link from "./Link";
-
+import "../styles/components/Header.scss";
 import "../styles/components/Layout.scss";
 
 const Header = () => {
@@ -12,6 +11,7 @@ const Header = () => {
       site {
         siteMetadata {
           title
+          description
         }
       }
     }
@@ -19,11 +19,12 @@ const Header = () => {
 
   return (
     <header className="header">
-      <div>
-        <Link to="/" className="header_icon">
-          <h1 className="header_title">{data.site.siteMetadata.title}</h1>
-        </Link>
-      </div>
+      <Link to="/" className="header_icon">
+        <h1 className="header_title">{data.site.siteMetadata.title}</h1>
+      </Link>
+      <p className="header_txt">
+        AKR's technical blog. This is mainly a record of learning about frontend.
+      </p>
     </header>
   )
 }

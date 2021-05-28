@@ -5,22 +5,24 @@ import { graphql } from "gatsby";
 // components
 import Layout from "../components/Layout";
 import PostCard from "../components/PostCard";
+import Tags from "../components/Tags";
+import Seo from "../components/SEO";
 
-// styles
-import "../styles/reset.scss";
+const IndexPage = ({data}) => (
+  <Layout location="Top">
 
-const IndexPage = ({data}) => {
+    <Seo/>
 
-  return (
-    <>
-      <Layout location="Top">
-        {data.allMarkdownRemark.edges.map( ({node}) => (
-          <PostCard key={node.fields.slug} data={node} />
-        ))}
-      </Layout>
-    </>
-  )
-};
+    <Tags select="all"/>
+
+    <ul className="posts">
+      {data.allMarkdownRemark.edges.map( ({node}) => (
+        <PostCard key={node.fields.slug} data={node} />
+      ))}
+    </ul>
+
+  </Layout>
+);
 
 export default IndexPage;
 
@@ -29,6 +31,8 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        description
+        author
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
@@ -38,15 +42,14 @@ export const pageQuery = graphql`
             slug
           }
           frontmatter {
+            title
             date(formatString: "YYYY-MM-DD")
             update(formatString: "YYYY-MM-DD")
-            title
             tags
-            thumbnail {
+            description
+            hero {
               childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
+                gatsbyImageData(width: 400)
               }
             }
           }
