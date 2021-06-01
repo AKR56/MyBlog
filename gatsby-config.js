@@ -12,7 +12,6 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-image`,
-    // `gatsby-plugin-sitemap`,
 
     {
       resolve: `gatsby-source-filesystem`,
@@ -70,6 +69,19 @@ module.exports = {
           head: true,
         },
       },
+    },
+
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `CodeBeach`,
+        short_name: `CB`,
+        start_url: `/`,
+        background_color: `#f7f0eb`,
+        theme_color: `#a2466c`,
+        display: `standalone`,
+        icon: `src/image/beach.png`,
+      }
     },
 
   ],
